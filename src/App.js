@@ -33,6 +33,7 @@ class BooksApp extends React.Component {
   changeShelf = (book, shelf) => {
     console.log("IAMHERE")
     BooksAPI.update(book, shelf)
+    console.log("IWAITED")
     BooksAPI.getAll().then((books) => {
       this.setState({ books: books })
     }
@@ -53,6 +54,7 @@ class BooksApp extends React.Component {
 
         {this.state.showSearchPage ? (
           <BookSearchBar
+            bookList = {this.state.books}
             updateSearchBookShelf={this.updateSearchBookShelf}
             changeShelf={this.changeShelf}
             changePage={this.changeShownPage}

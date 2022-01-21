@@ -15,20 +15,21 @@ class BookSearchBar extends React.Component {
         this.setState(() => ({
             query: query.trim()
         }))
-        if(query.length > 0) {
-        BooksAPI.search(query).then((returnedBooks)=> {
-            if (returnedBooks && !returnedBooks.error) { 
-            this.setState(() => ({
-                showingBooks: returnedBooks
-            }))
-            
+        if (query.length > 0) {
+            BooksAPI.search(query).then((returnedBooks) => {
+                if (returnedBooks && !returnedBooks.error) {
+                    this.setState(() => ({
+                        showingBooks: returnedBooks
+                    }))
+
+                }
+            }
+
+            )
         }
-        }
-        
-        )}
         this.updateSearchBookShelf()
     }
-  
+
 
     render() {
 
@@ -58,14 +59,20 @@ class BookSearchBar extends React.Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {this.state.showingBooks.map((book) =>
-
                             <li key={book.id}>
+                                {this.props.bookList.forEach(books => {
+                                    if (books.id !== book.id) {
+                                        book.shelf = "none"
+                                    } else {
+                                        book.shelf = books.shelf
+                                    }
+                                })}
                                 <Book
                                     changeShelf={this.props.changeShelf}
-                                    currentBook = {book}
-                                    url={book.imageLinks? book.imageLinks.thumbnail : null}
+                                    currentBook={book}
+                                    url={book.imageLinks ? book.imageLinks.thumbnail : null}
                                     title={book.title}
-                                    author={book.authors}  />
+                                    author={book.authors} />
                             </li>
                         )}
                     </ol>
