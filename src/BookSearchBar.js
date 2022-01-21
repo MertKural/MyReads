@@ -9,7 +9,6 @@ class BookSearchBar extends React.Component {
         showingBooks: []
     }
 
-    updateSearchBookShelf = this.props.updateSearchBookShelf
 
     updateQuery = (query) => {
         this.setState(() => ({
@@ -27,7 +26,7 @@ class BookSearchBar extends React.Component {
 
             )
         }
-        this.updateSearchBookShelf()
+        
     }
 
 
@@ -44,7 +43,6 @@ class BookSearchBar extends React.Component {
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
                   You can find these search terms here:
                   https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
@@ -59,21 +57,24 @@ class BookSearchBar extends React.Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {this.state.showingBooks.map((book) =>
-                            <li key={book.id}>
-                                {this.props.bookList.forEach(books => {
-                                    if (books.id !== book.id) {
+                                {this.props.bookList.forEach(bookListbook => {
+                                    {console.log(bookListbook.id,book.id)}
+                                    if (bookListbook.id == book.id){
+                                        book.shelf = bookListbook.shelf
+                                    }else {
                                         book.shelf = "none"
-                                    } else {
-                                        book.shelf = books.shelf
                                     }
-                                })}
+                                })          
+                                return (              
+                            <li key={book.id}>
                                 <Book
                                     changeShelf={this.props.changeShelf}
                                     currentBook={book}
                                     url={book.imageLinks ? book.imageLinks.thumbnail : null}
                                     title={book.title}
-                                    author={book.authors} />
-                            </li>
+                                    author={book.authors} 
+                                    />
+                            </li>)}
                         )}
                     </ol>
                 </div>
