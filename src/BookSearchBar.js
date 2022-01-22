@@ -2,6 +2,7 @@ import React from 'react';
 import Book from './Book';
 import * as BooksAPI from './BooksAPI';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class BookSearchBar extends React.Component {
     state = {
@@ -27,7 +28,6 @@ class BookSearchBar extends React.Component {
         return (
             <div className="search-books">
                 <div className="search-books-bar">
-                    {/* <button className="close-search" onClick={() => this.props.changePage(false)}>Close</button> */}
                     <Link to="/" className="close-search">
             Close
           </Link>
@@ -50,7 +50,6 @@ class BookSearchBar extends React.Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {this.state.showingBooks.map((book) => {
-                            let shelf = "none"
                             this.props.bookList.find((bookListbook) => {
                                 if (bookListbook.id == book.id) {
                                     book.shelf = bookListbook.shelf
@@ -73,6 +72,11 @@ class BookSearchBar extends React.Component {
             </div>
         )
     }
+}
+
+BookSearchBar.propTypes = {
+    bookList : PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
 }
 
 export default BookSearchBar;

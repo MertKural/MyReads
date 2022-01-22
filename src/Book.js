@@ -1,10 +1,9 @@
 import React from 'react';
-import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types';
 
 class Book extends React.Component {
 
     render() {
-        {console.log(this.props.currentBook.shelf)}
         return (
             <div className="book">
                 <div className="book-top">
@@ -18,7 +17,6 @@ class Book extends React.Component {
                         } 
                         onChange={(e) => {this.props.changeShelf(this.props.currentBook, e.target.value)}}
                         >
-                            {/* {console.log(this.props.currentBook.shelf,this.props.currentBook.title)} */}
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -32,6 +30,14 @@ class Book extends React.Component {
             </div>
         )
     }
+}
+
+Book.propTypes = {
+    changeShelf : PropTypes.func.isRequired,
+    currentBook: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
+    title:PropTypes.string.isRequired,
+    author:PropTypes.array
 }
 
 export default Book;
