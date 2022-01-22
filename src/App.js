@@ -1,7 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookAdd from './BookAdd'
 import BookDisplay from './BookDisplay'
 import BookSearchBar from './BookSearchBar'
 import {Route} from 'react-router-dom'
