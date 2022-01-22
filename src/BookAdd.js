@@ -4,8 +4,8 @@ class BookAdd extends React.Component{
     render(){
         return(
             <div className="open-search">
-              <button onClick={() => this.props.changePage(true)}>Add a book</button>
-            </div>
+            <button onClick={() => this.props.changePage(true)}>Add a book</button>
+          </div>
         )
     }
 }

@@ -4,6 +4,7 @@ import './App.css'
 import BookAdd from './BookAdd'
 import BookDisplay from './BookDisplay'
 import BookSearchBar from './BookSearchBar'
+import {Route} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -60,10 +61,11 @@ class BooksApp extends React.Component {
             <BookDisplay
             changeShelf={this.changeShelf}            
             bookList = {this.state.books}
+            changePage={this.changeShownPage}
             />
-            <BookAdd
+            {/* <BookAdd
               changePage={this.changeShownPage}
-            />
+            /> */}
           </div>
         )}
       </div>
