@@ -23,6 +23,11 @@ class BookSearchBar extends React.Component {
             }
             )
         }
+        else if(query.length === 0){
+            this.setState(() => ({
+                showingBooks:[]
+            }))
+        }
     }
     render() {
         return (
@@ -51,7 +56,7 @@ class BookSearchBar extends React.Component {
                     <ol className="books-grid">
                         {this.state.showingBooks.map((book) => {
                             this.props.bookList.find((bookListbook) => {
-                                if (bookListbook.id == book.id) {
+                                if (bookListbook.id === book.id) {
                                     book.shelf = bookListbook.shelf
                                 }
                             })
