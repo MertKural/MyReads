@@ -3,13 +3,10 @@ import Book from './Book';
 import * as BooksAPI from './BooksAPI';
 
 class BookSearchBar extends React.Component {
-
     state = {
         query: "",
         showingBooks: []
     }
-
-
     updateQuery = (query) => {
         this.setState(() => ({
             query: query.trim()
@@ -20,21 +17,13 @@ class BookSearchBar extends React.Component {
                     this.setState(() => ({
                         showingBooks: returnedBooks
                     }))
-
                 }
             }
-
             )
         }
-        
     }
-
-
     render() {
-
         return (
-
-
             <div className="search-books">
                 <div className="search-books-bar">
                     <button className="close-search" onClick={() => this.props.changePage(false)}>Close</button>
@@ -56,25 +45,24 @@ class BookSearchBar extends React.Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.state.showingBooks.map((book) =>
-                                {this.props.bookList.forEach(bookListbook => {
-                                    {console.log(bookListbook.id,book.id)}
-                                    if (bookListbook.id == book.id){
-                                        book.shelf = bookListbook.shelf
-                                    }else {
-                                        book.shelf = "none"
-                                    }
-                                })          
-                                return (              
-                            <li key={book.id}>
-                                <Book
-                                    changeShelf={this.props.changeShelf}
-                                    currentBook={book}
-                                    url={book.imageLinks ? book.imageLinks.thumbnail : null}
-                                    title={book.title}
-                                    author={book.authors} 
+                        {this.state.showingBooks.map((book) => {
+                            let shelf = "none"
+                            this.props.bookList.find((bookListbook) => {
+                                if (bookListbook.id == book.id) {
+                                    book.shelf = bookListbook.shelf
+                                }
+                            })
+                            return (
+                                <li key={book.id}>
+                                    <Book
+                                        changeShelf={this.props.changeShelf}
+                                        currentBook={book}
+                                        url={book.imageLinks ? book.imageLinks.thumbnail : null}
+                                        title={book.title}
+                                        author={book.authors}
                                     />
-                            </li>)}
+                                </li>)
+                        }
                         )}
                     </ol>
                 </div>

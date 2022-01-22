@@ -11,7 +11,11 @@ class Book extends React.Component {
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.url}")` }}></div>
                     <div className="book-shelf-changer">
                         <select
-                        value={this.props.currentBook.shelf} 
+                        value={
+                            this.props.currentBook.shelf ?
+                            this.props.currentBook.shelf:
+                            "none"
+                        } 
                         onChange={(e) => {this.props.changeShelf(this.props.currentBook, e.target.value)}}
                         >
                             {/* {console.log(this.props.currentBook.shelf,this.props.currentBook.title)} */}
