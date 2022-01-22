@@ -4,6 +4,7 @@ import './App.css'
 import BookDisplay from './BookDisplay'
 import BookSearchBar from './BookSearchBar'
 import { Route } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -31,19 +32,22 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path='/search' render={() =>
+        <Routes>
+        <Route exact path='/search' element={
           <BookSearchBar
             bookList={this.state.books}
             changeShelf={this.changeShelf}
           />
         }
         />
-        <Route exact path='/' render={() =>
+
+        <Route exact path='/' element={
           <BookDisplay
             changeShelf={this.changeShelf}
             bookList={this.state.books}
           />
         } />
+        </Routes>
       </div>
     )
   }

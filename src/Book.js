@@ -35,7 +35,7 @@ class Book extends React.Component {
 Book.propTypes = {
     changeShelf : PropTypes.func.isRequired,
     currentBook: PropTypes.object.isRequired,
-    url: PropTypes.string.isRequired,
+    url: PropTypes.string,
     title:PropTypes.string.isRequired,
     author:PropTypes.array
 }

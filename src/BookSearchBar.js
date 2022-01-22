@@ -20,10 +20,15 @@ class BookSearchBar extends React.Component {
                         showingBooks: returnedBooks
                     }))
                 }
+                else{
+                    this.setState(() =>({
+                        showingBooks: []
+                    }))
+                }
             }
             )
         }
-        else if(query.length === 0){
+        else {
             this.setState(() => ({
                 showingBooks:[]
             }))
